@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class SpawnTurretOnClick : MonoBehaviour
 {
+    public Inventory inv;
     Ray ray; //create the ray
     RaycastHit hit; //creating the raycast hit
-    public GameObject turretToInstantiate; //the object that will be instantiated is the turret
-    public Image[] turretSlots;
-    //Spawn location set to turret slot
-    //Instantiate on click FROM INVENTORY TURRET SLOTS to the grid
+    //public GameObject turretToInstantiate; //the object that will be instantiated is the turret (will change depending on which turret type is being used)
+    //public GameObject[] turretSlots;
 
     // Update is called once per frame
     void Update()
@@ -23,9 +22,13 @@ public class SpawnTurretOnClick : MonoBehaviour
             //If mouse button left is down
             if (Input.GetMouseButtonDown(0))
             {
-                //Creates a prefab wherever user clicks
-                Instantiate(turretToInstantiate, hit.point, Quaternion.identity);
-                //turretToInstantiate.Instantiate<Transform>(hit.point, turretSlots, Quaternion.identity);
+                if (inv.totalTurrets[0] < inv.maxTurretCount)
+                {
+                    //Creates a prefab wherever user clicks
+                    Instantiate(inv.currentTurretObject, hit.point, Quaternion.identity);
+                    inv.totalTurrets[0]++;
+                }
+
             }
         }
     }

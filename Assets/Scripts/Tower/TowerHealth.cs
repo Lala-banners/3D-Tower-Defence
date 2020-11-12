@@ -27,12 +27,22 @@ public class TowerHealth : MonoBehaviour
         {
             TakeDamage(10f);
         }
+
+        TowerDefeated();
     }
 
     public void TakeDamage(float Damage)
     {
         currentHealth = currentHealth - Damage;
         healthSlider.value = currentHealth;
+    }
+
+    public void TowerDefeated()
+    {
+        if(currentHealth == 0)
+        {
+            print("Tower has been defeated");
+        }
     }
 
 }

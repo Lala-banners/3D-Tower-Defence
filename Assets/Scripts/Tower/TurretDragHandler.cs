@@ -25,7 +25,7 @@ public class TurretDragHandler : MonoBehaviour, IPointerDownHandler, IBeginDragH
     public void OnDrag(PointerEventData eventData)
     {
         print("OnDrag");
-        rectTransform.anchoredPosition += eventData.delta; 
+        //rectTransform.anchoredPosition += eventData.delta; 
     }
 
     public void OnEndDrag(PointerEventData eventData)

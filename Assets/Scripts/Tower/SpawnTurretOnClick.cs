@@ -26,7 +26,7 @@ public class SpawnTurretOnClick : MonoBehaviour
                 {
                     //Creates a prefab wherever user clicks
                     Instantiate(inv.currentTurretObject, hit.point, Quaternion.identity);
-                    inv.totalTurrets[0]++;
+                    inv.totalTurrets[inv.currentTurret]++;
                 }
 
             }

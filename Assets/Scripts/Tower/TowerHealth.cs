@@ -9,6 +9,7 @@ public class TowerHealth : MonoBehaviour
     private float maxHealth = 100;
     public Slider healthSlider;
     private float currentHealth;
+    //public Gradient gradient;
     #endregion
 
 
@@ -18,6 +19,7 @@ public class TowerHealth : MonoBehaviour
         currentHealth = maxHealth;
         healthSlider.maxValue = maxHealth;
         healthSlider.value = maxHealth;
+        
     }
 
     // Update is called once per frame

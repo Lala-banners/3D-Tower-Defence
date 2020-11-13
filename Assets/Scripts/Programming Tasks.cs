@@ -10,12 +10,7 @@ public class ProgrammingTasks : MonoBehaviour
      * Buy turret system + enemy killed gives money
      * Turrets shoot and destroy enemies
      * Tower/Base health DONE
-     * Drag and drop turrets steps:
-     * 1. Drag UI (detect when ui is being dragged) DONE
-     * 2. Spawn a turret model that stays on the mouse position
-     * 3. Create turret where you let go of mouse
-     * check if where you let go is a valid spawn location with raycast
-     * raycast on mouse pos in the world and spawn object
+     * 
      * 
      */
 

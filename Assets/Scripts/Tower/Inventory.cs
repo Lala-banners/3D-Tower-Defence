@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-    public enum TurretTypes
+public enum TurretTypes
     {
         none,
         laserOne,
@@ -20,6 +21,10 @@ public class Inventory : MonoBehaviour
 
     public GameObject currentTurretObject = null;
 
+    public int money = 10; //for setting how much money player receives after killing an enemy
+    private int maxMoney = 0; //So money doesnt go below 0
+    public Text moneyText;
+
     //Method for making current turret laser one
     public void UseLaserOne()
     {
@@ -29,6 +34,17 @@ public class Inventory : MonoBehaviour
             
         currentTurretObject = turrets[0];
         currentTurret = 0;
+
+        //To upgrade turret, costs 5 coins
+        money--;
+
+        if (money < maxMoney)
+        {
+            //moneyText = string("");
+            money = maxMoney;
+            Debug.Log("No more money");
+        }
+        moneyText.text = "Money: " + money;
     }
 
     public void UseLaserTwo()
@@ -43,6 +59,8 @@ public class Inventory : MonoBehaviour
         currentTurretObject = turrets[2];
         currentTurret = 2;
     }
+
+
 
     //Spawn turret on map
     //Check if it the correct turret

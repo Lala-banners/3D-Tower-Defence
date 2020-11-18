@@ -51,6 +51,17 @@ public class Inventory : MonoBehaviour
     {
         currentTurretObject = turrets[1];
         currentTurret = 1;
+
+        //To upgrade turret, costs 5 coins
+        money--;
+
+        if (money < maxMoney)
+        {
+            //moneyText = string("");
+            money = maxMoney;
+            Debug.Log("No more money");
+        }
+        moneyText.text = "Money: " + money;
     }
 
 
@@ -58,6 +69,17 @@ public class Inventory : MonoBehaviour
     {
         currentTurretObject = turrets[2];
         currentTurret = 2;
+
+        //To upgrade turret, costs 5 coins
+        money--;
+
+        if (money < maxMoney)
+        {
+            //moneyText = string("");
+            money = maxMoney;
+            Debug.Log("No more money");
+        }
+        moneyText.text = "Money: " + money;
     }
 
 

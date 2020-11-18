@@ -5,8 +5,8 @@ using UnityEngine;
 public class ProgrammingTasks : MonoBehaviour
 {
     /* Lara Tasks
-     * Tower creation + turret inventory for player to drag into game
-     * Turret spawner
+     * Tower creation + turret inventory for player to drag into game DONE
+     * Turret spawner DONE
      * Buy turret system + enemy killed gives money
      * Turrets shoot and destroy enemies
      * Tower/Base health DONE

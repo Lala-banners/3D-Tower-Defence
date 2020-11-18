@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TowerHealth : MonoBehaviour
+public class CoreHealth : MonoBehaviour
 {
     #region Variables
     private float maxHealth = 100;

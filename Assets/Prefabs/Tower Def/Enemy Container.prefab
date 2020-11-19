@@ -434,6 +434,21 @@ PrefabInstance:
       propertyPath: speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 549353632646544316, guid: 177a6c9b16cae1441a01133692e8d87b,
+        type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 549353632646544316, guid: 177a6c9b16cae1441a01133692e8d87b,
+        type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 549353632646544316, guid: 177a6c9b16cae1441a01133692e8d87b,
+        type: 3}
+      propertyPath: money
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 621344483317891643, guid: 177a6c9b16cae1441a01133692e8d87b,
         type: 3}
       propertyPath: m_Name

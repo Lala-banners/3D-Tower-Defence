@@ -44,14 +44,11 @@ namespace TowerDefence.Enemies
         [SerializeField]
         private DeathEvent onDeath = new DeathEvent();
 
-        //private Player player; // The reference to the player gameObject in the scene.
-
-        #region CLEON FIX ENEMY PATH FOLLOWING
-        /*void EnemyFollowPath()
+        void EnemyFollowPath()
         {
             //when AI reaches waypoint 1,
             //go to next waypoint 2 etc
-            float distance = Vector2.Distance(transform.position, enemyPath[index].transform.position);
+            float distance = Vector3.Distance(transform.position, enemyPath[index].transform.position);
             if (distance < minDistance)
             {
                 index++;
@@ -61,15 +58,13 @@ namespace TowerDefence.Enemies
                 index = 0; ;
             }
 
-            //MoveBadGuy(enemyPath[index].transform.position);
+            MoveBadGuy(enemyPath[index].transform.position);
         }
 
-        void MoveBadGuy(Vector2 targetPos)
+        void MoveBadGuy(Vector3 targetPos)
         {
-            transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         }
-        */
-        #endregion
 
         /// <summary>
         /// Handles damage of the enemy and if below or equal to 0, calls Die()
@@ -105,7 +100,7 @@ namespace TowerDefence.Enemies
         // Update is called once per frame
         void Update()
         {
-            //EnemyFollowPath();
+            EnemyFollowPath();
         }
     }
 }

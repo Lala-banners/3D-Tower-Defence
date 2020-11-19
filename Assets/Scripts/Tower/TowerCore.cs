@@ -6,7 +6,7 @@ using TowerDefence.Managers;
 //Towers will have access to TowerDefence.Towers namespace
 namespace TowerDefence.Towers
 {
-    public abstract class Tower : MonoBehaviour
+    public abstract class TowerCore : MonoBehaviour
     {
         #region PROPERTIES
         public string TowerName // The public accessor for the towerName variable.
@@ -25,7 +25,7 @@ namespace TowerDefence.Towers
         }
 
         /// <summary>
-        /// Gets formatted string containing all of the description, Tower properties,
+        /// Gets formatted string containing all of the description, TowerCore properties,
         /// name and cost to be displayed on the UI.
         /// </summary>
         public string UiDisplayText
@@ -128,7 +128,7 @@ namespace TowerDefence.Towers
         public Transform turret;
         private int level = 1;
         private float xp = 0;
-        //target the Tower is attacking
+        //target the TowerCore is attacking
         [SerializeField]private Enemy target = null;
         /* null (reference to objects) - means nothing.
         * Objects take small amount of memory on a computer and when it's null there is nothing assigned to it (As if it doesn't exist).

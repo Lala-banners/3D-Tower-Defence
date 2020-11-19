@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TowerDefence.Towers;
-public class MachineGun : Tower
+public class LaserOne : TowerCore
 {
     protected override void RenderAttackVisuals()
     {

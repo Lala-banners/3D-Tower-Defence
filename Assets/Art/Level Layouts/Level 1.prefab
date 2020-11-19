@@ -622,6 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 0}
+  gameOver: {fileID: 0}
 --- !u!1001 &1632130309555983922
 PrefabInstance:
   m_ObjectHideFlags: 0

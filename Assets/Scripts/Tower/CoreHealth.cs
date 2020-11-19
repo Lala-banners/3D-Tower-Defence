@@ -10,6 +10,7 @@ public class CoreHealth : MonoBehaviour
     public Slider healthSlider;
     private float currentHealth;
     //public Gradient gradient;
+    public GameObject gameOver;
     #endregion
 
 
@@ -43,7 +44,14 @@ public class CoreHealth : MonoBehaviour
     {
         if(currentHealth == 0)
         {
+            gameOver.SetActive(true);
+            Time.timeScale = 0;
             print("Tower has been defeated");
+        }
+        else
+        {
+            Time.timeScale = 1;
+            gameOver.SetActive(false);
         }
     }
 

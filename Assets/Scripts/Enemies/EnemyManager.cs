@@ -21,7 +21,7 @@ namespace TowerDefence.Managers
         //Function to spawn enemies
         public void SpawnEnemy(Transform _spawner)
         {
-            GameObject newEnemy = Instantiate(enemyPrefab, _spawner.position, enemyPrefab.transform.rotation);
+            GameObject newEnemy = Instantiate(enemyPrefab, _spawner.position, enemyPrefab.transform.rotation); // null ref check if null
             aliveEnemies.Add(newEnemy.GetComponent<Enemy>());
         }
 
@@ -53,7 +53,7 @@ namespace TowerDefence.Managers
             foreach (Enemy enemy in aliveEnemies)
             {
                 //Detects if the enemy is within range, if so, add to the list
-                float distance = Vector3.Distance(enemy.transform.position, _target.position);
+                float distance = Vector3.Distance(enemy.transform.position, _target.position); //------- put breakpoint
                 if (distance < _maxRange && distance > _minRange)
                 {
                     closeEnemies.Add(enemy);

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8785083744102094578}
   m_Layer: 0
-  m_Name: Level 3 1
+  m_Name: Level 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -776,7 +776,7 @@ PrefabInstance:
     - target: {fileID: 3765740629655154463, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
       propertyPath: m_Name
-      value: Platform (109)
+      value: Spawn Tiles
       objectReference: {fileID: 0}
     - target: {fileID: 3765740629655154465, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
@@ -2456,7 +2456,7 @@ PrefabInstance:
     - target: {fileID: 3765740629655154463, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
       propertyPath: m_Name
-      value: Platform (57)
+      value: End Points
       objectReference: {fileID: 0}
     - target: {fileID: 3765740629655154465, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
@@ -3176,7 +3176,7 @@ PrefabInstance:
     - target: {fileID: 3765740629655154463, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
       propertyPath: m_Name
-      value: Platform (248)
+      value: Spawn Tiles
       objectReference: {fileID: 0}
     - target: {fileID: 3765740629655154465, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
@@ -9976,7 +9976,7 @@ PrefabInstance:
     - target: {fileID: 3765740629655154463, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
       propertyPath: m_Name
-      value: Platform (59)
+      value: End Points
       objectReference: {fileID: 0}
     - target: {fileID: 3765740629655154465, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
@@ -10136,7 +10136,7 @@ PrefabInstance:
     - target: {fileID: 3765740629655154463, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
       propertyPath: m_Name
-      value: Platform (172)
+      value: End Points
       objectReference: {fileID: 0}
     - target: {fileID: 3765740629655154465, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
@@ -11416,7 +11416,7 @@ PrefabInstance:
     - target: {fileID: 3765740629655154463, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
       propertyPath: m_Name
-      value: Platform (7)
+      value: Spawn Tiles
       objectReference: {fileID: 0}
     - target: {fileID: 3765740629655154465, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
@@ -14936,7 +14936,7 @@ PrefabInstance:
     - target: {fileID: 3765740629655154463, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
       propertyPath: m_Name
-      value: Platform (174)
+      value: End Points
       objectReference: {fileID: 0}
     - target: {fileID: 3765740629655154465, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
@@ -19496,7 +19496,7 @@ PrefabInstance:
     - target: {fileID: 3765740629655154463, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}
       propertyPath: m_Name
-      value: Platform (146)
+      value: Spawn Tiles
       objectReference: {fileID: 0}
     - target: {fileID: 3765740629655154465, guid: 9297d9eb251d3594a914708209d7b790,
         type: 3}

@@ -30,11 +30,6 @@ public class MenuHandler : MonoBehaviour
             Time.timeScale = 0;
             print("Options menu appears");
         }
-        //else
-        //{
-        //    Time.timeScale = 1;
-        //    options.SetActive(false);
-        //}
     }
 
     // Update is called once per frame

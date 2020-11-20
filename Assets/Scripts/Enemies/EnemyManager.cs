@@ -34,8 +34,6 @@ namespace TowerDefence.Managers
             enemy.enemyPaths = enemyPaths;
 
             aliveEnemies.Add(enemy);
-
-            
         }
 
         public void KillEnemy(Enemy _enemy)
@@ -49,6 +47,8 @@ namespace TowerDefence.Managers
                 aliveEnemies.RemoveAt(enemyIndex);
             }
         }
+
+      
 
         /// <summary>
         /// Loops through all aliveEnemies in the game and finds the closest enemies within a certain range

@@ -129,7 +129,7 @@ namespace TowerDefence.Towers
         private int level = 1;
         private float xp = 0;
         //target the TowerCore is attacking
-        [SerializeField]private Enemy target = null;
+        [SerializeField] private Enemy target = null;
         /* null (reference to objects) - means nothing.
         * Objects take small amount of memory on a computer and when it's null there is nothing assigned to it (As if it doesn't exist).
         * EG commented line of code.
@@ -200,6 +200,9 @@ namespace TowerDefence.Towers
             {
                 //(this) object
                 target.Damage(Damage); //Property Damage
+
+                //Update the health bar
+                target.healthBar.value = target.enemyHealth;
 
                 // Render attack visuals  
                 RenderAttackVisuals();

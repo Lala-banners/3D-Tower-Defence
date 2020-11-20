@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 using TowerDefence.Towers;
 using TowerDefence.Managers;
 using UnityEngine.Events; //A zero argument persistent callback that can be saved with the Scene.
@@ -11,27 +13,29 @@ namespace TowerDefence.Enemies
 {
     public class Enemy : MonoBehaviour
     {
+        Inventory inv;
+
         #region Enemy Path finding
         public int index = 0;
         public GameObject[] enemyPaths;
         public float minDistance = 0.5f;
+        public EnemyManager enemyMan;
+        public CoreHealth coreHealth;
         #endregion
 
-        [System.Serializable]
-        public class DeathEvent : UnityEvent<Enemy> { }
+        //[System.Serializable]
+        //public class DeathEvent : UnityEvent<Enemy> { }
         public float XP { get { return xp; } }//Get xp and return amount (This is a property).
         public int Money { get { return money; } } //Get money and return amount (This is a property).
 
         [Header("General Enemy Stats")]
         [SerializeField, Tooltip("How fast the enemy will move within the game")]
         private float speed = 1;
+        
+        [Header("Health")]
+        public Slider healthBar;
         [SerializeField, Tooltip("How much damage the enemy can take before dying")]
-        private float enemyHealth = 1;
-        [SerializeField, Tooltip("How much damage the enemy will do to Core's health")]
-        private float damageToCore = 1;
-        [SerializeField, Tooltip("How big is the enemy visually?")]
-        private float size = 1;
-      
+        public float enemyHealth = 100;
 
         [Header("Rewards")]
         [SerializeField, Tooltip("Amount of experience the killing tower will gain from killing enemy")]
@@ -39,10 +43,16 @@ namespace TowerDefence.Enemies
         [SerializeField, Tooltip("Amount of money player will gain upon killing the enemy")]
         private int money = 1;
 
-        [Space] //Add spacing in Unity Inspector
 
-        [SerializeField]
-        private DeathEvent onDeath = new DeathEvent();
+        private void Start()
+        {
+            coreHealth = FindObjectOfType<CoreHealth>();
+
+            if(coreHealth == null)
+            {
+                Debug.LogError("Could not find coreHealth for enemy");
+            }
+        }
 
         void EnemyFollowPath()
         {
@@ -54,7 +64,7 @@ namespace TowerDefence.Enemies
             }
             if (index >= enemyPaths.Length)
             {
-                index = 0; 
+                index = 0;
             }
 
             MoveBadGuy(enemyPaths[index].transform.position);
@@ -65,6 +75,24 @@ namespace TowerDefence.Enemies
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         }
 
+
+        
+
+        //Collide with core to self destruct
+        private void OnTriggerEnter(Collider other)
+        {
+            //if (collision.transform.GetComponent<CoreHealth>() != null)
+            if (other.transform.tag == "Core")
+            {
+                //Die();
+                coreHealth.TakeDamage(10f);
+                print("Enemies are dying!");
+                Die();
+                //Update money
+                //Update core health bar
+            }
+        }
+
         /// <summary>
         /// Handles damage of the enemy and if below or equal to 0, calls Die()
         /// </summary>
@@ -73,33 +101,21 @@ namespace TowerDefence.Enemies
             enemyHealth -= _damage;
             if (enemyHealth <= 0)
             {
+                enemyHealth = enemyHealth - _damage;
+                healthBar.value = enemyHealth;
                 Die();
             }
         }
 
-        /// <summary>
-        /// Handles the visual, and technical features of dying, such as giving the tower experience.
-        /// </summary>
         private void Die()
         {
-            onDeath.Invoke(this); //Anything subscribed to the event will automatically know to call Die() function.
-
-
-            //Death Visuals
-        }
-
-        void Start()
-        {
-            // Accessing the only player in the game
-            //player = Player.instance;
-            //Add subscribers to the event onDeath()
-            //onDeath.AddListener(player.AddMoney); causing errors
+            //enemyMan.KillEnemy(this);
+            Destroy(this.gameObject);
         }
 
         // Update is called once per frame
         void Update()
         {
-
             EnemyFollowPath();
         }
     }

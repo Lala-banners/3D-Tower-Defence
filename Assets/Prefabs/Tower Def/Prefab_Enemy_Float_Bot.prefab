@@ -168,13 +168,14 @@ GameObject:
   m_Component:
   - component: {fileID: 7661428841884461929}
   - component: {fileID: 5983386819421151485}
+  - component: {fileID: 2818724378281294910}
   m_Layer: 0
   m_Name: Prefab_Enemy_Float_Bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7661428841884461929
 Transform:
   m_ObjectHideFlags: 0
@@ -217,15 +218,27 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   minDistance: 0.5
+  enemyMan: {fileID: 0}
   speed: 10
   enemyHealth: 100
   damageToCore: 10
   size: 1
+  healthBar: {fileID: 0}
   xp: 1
   money: 5
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
+--- !u!65 &2818724378281294910
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6631978335270492538}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.8595896, y: 5.9069953, z: 5.4138727}
+  m_Center: {x: 0.08039951, y: 1.1439788, z: 0.06456518}
 --- !u!1 &8571306174052578793
 GameObject:
   m_ObjectHideFlags: 0

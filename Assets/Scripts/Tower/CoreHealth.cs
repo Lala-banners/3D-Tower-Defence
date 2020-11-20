@@ -8,8 +8,7 @@ public class CoreHealth : MonoBehaviour
     #region Variables
     private float maxHealth = 100;
     public Slider healthSlider;
-    private float currentHealth;
-    //public Gradient gradient;
+    public float currentHealth;
     public GameObject gameOver;
     #endregion
 
@@ -17,32 +16,39 @@ public class CoreHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        HealthBar();
+    }
+
+    public void HealthBar()
+    {
         currentHealth = maxHealth;
         healthSlider.maxValue = maxHealth;
         healthSlider.value = maxHealth;
-        
     }
+
+    //When enemies collide with core
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //  TakeDamage(10f);
+
+    //  TowerDefeated();
+    //}
+
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(10f);
+            //TakeDamage(10f);
         }
 
-        TowerDefeated();
+        //TowerDefeated();
     }
 
     public void TakeDamage(float Damage)
     {
-        currentHealth = currentHealth - Damage;
-        healthSlider.value = currentHealth;
-    }
-
-    public void TowerDefeated()
-    {
-        if(currentHealth == 0)
+        if (currentHealth == 0)
         {
             gameOver.SetActive(true);
             Time.timeScale = 0;
@@ -53,6 +59,25 @@ public class CoreHealth : MonoBehaviour
             Time.timeScale = 1;
             gameOver.SetActive(false);
         }
+
+        //update health bar
+        currentHealth = currentHealth - Damage;
+        healthSlider.value = currentHealth;
     }
 
-}
+    //public void TowerDefeated()
+    //{
+      //  if(currentHealth == 0)
+        //{
+          //  gameOver.SetActive(true);
+            //Time.timeScale = 0;
+            //print("Tower has been defeated");
+        //}
+        //else
+        //{
+          //  Time.timeScale = 1;
+            //gameOver.SetActive(false);
+        //}
+    }
+
+

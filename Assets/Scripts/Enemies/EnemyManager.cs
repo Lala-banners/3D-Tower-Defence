@@ -19,10 +19,23 @@ namespace TowerDefence.Managers
         private List<Enemy> aliveEnemies = new List<Enemy>();
 
         //Function to spawn enemies
-        public void SpawnEnemy(Transform _spawner)
+        public void SpawnEnemy(Transform _spawner, Transform wayPoint)
         {
             GameObject newEnemy = Instantiate(enemyPrefab, _spawner.position, enemyPrefab.transform.rotation); // null ref check if null
-            aliveEnemies.Add(newEnemy.GetComponent<Enemy>());
+            Enemy enemy = newEnemy.GetComponent<Enemy>();
+
+            int count = wayPoint.childCount;
+
+            GameObject[] enemyPaths = new GameObject[count];
+            for(int i = 0; i < count ;i++)
+            {
+                enemyPaths[i] = wayPoint.GetChild(i).gameObject;
+            }
+            enemy.enemyPaths = enemyPaths;
+
+            aliveEnemies.Add(enemy);
+
+            
         }
 
         public void KillEnemy(Enemy _enemy)

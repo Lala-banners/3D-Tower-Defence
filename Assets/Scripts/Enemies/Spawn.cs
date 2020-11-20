@@ -9,6 +9,7 @@ public class Spawn : MonoBehaviour
     private float spawnRate;
     private float currentTime = 0;
     [SerializeField] EnemyManager enemyManager;
+    [SerializeField] Transform wayPoint;
     
 
     // Start is called before the first frame update
@@ -34,7 +35,7 @@ public class Spawn : MonoBehaviour
             currentTime = 0;
             if (enemyManager != null) 
             {
-                enemyManager.SpawnEnemy(transform);
+                enemyManager.SpawnEnemy(transform, wayPoint);
             }
         }
 

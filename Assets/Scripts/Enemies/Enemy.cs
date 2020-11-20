@@ -13,7 +13,7 @@ namespace TowerDefence.Enemies
     {
         #region Enemy Path finding
         public int index = 0;
-        public GameObject[] enemyPath;
+        public GameObject[] enemyPaths;
         public float minDistance = 0.5f;
         #endregion
 
@@ -22,16 +22,16 @@ namespace TowerDefence.Enemies
         public float XP { get { return xp; } }//Get xp and return amount (This is a property).
         public int Money { get { return money; } } //Get money and return amount (This is a property).
 
-        [Header("General Stats")]
+        [Header("General Enemy Stats")]
         [SerializeField, Tooltip("How fast the enemy will move within the game")]
         private float speed = 1;
         [SerializeField, Tooltip("How much damage the enemy can take before dying")]
-        private float health = 1;
-        [SerializeField, Tooltip("How much damage the enemy will do to player's health")]
-        private float damage = 1;
+        private float enemyHealth = 1;
+        [SerializeField, Tooltip("How much damage the enemy will do to Core's health")]
+        private float damageToCore = 1;
         [SerializeField, Tooltip("How big is the enemy visually?")]
         private float size = 1;
-        //RESISTANCE HERE
+      
 
         [Header("Rewards")]
         [SerializeField, Tooltip("Amount of experience the killing tower will gain from killing enemy")]
@@ -46,22 +46,21 @@ namespace TowerDefence.Enemies
 
         void EnemyFollowPath()
         {
-            //when AI reaches waypoint 1,
-            //go to next waypoint 2 etc
-            float distance = Vector3.Distance(transform.position, enemyPath[index].transform.position);
+            //Make enemy travel the path of the waypoints
+            float distance = Vector3.Distance(transform.position, enemyPaths[index].transform.position);
             if (distance < minDistance)
             {
                 index++;
             }
-            if (index >= enemyPath.Length)
+            if (index >= enemyPaths.Length)
             {
-                index = 0; ;
+                index = 0; 
             }
 
-            MoveBadGuy(enemyPath[index].transform.position);
+            MoveBadGuy(enemyPaths[index].transform.position);
         }
 
-        void MoveBadGuy(Vector3 targetPos)
+        void MoveBadGuy(Vector3 targetPos) //Make enemies move to the paths
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         }
@@ -71,8 +70,8 @@ namespace TowerDefence.Enemies
         /// </summary>
         public void Damage(float _damage)
         {
-            health -= _damage;
-            if (health <= 0)
+            enemyHealth -= _damage;
+            if (enemyHealth <= 0)
             {
                 Die();
             }
@@ -100,6 +99,7 @@ namespace TowerDefence.Enemies
         // Update is called once per frame
         void Update()
         {
+
             EnemyFollowPath();
         }
     }

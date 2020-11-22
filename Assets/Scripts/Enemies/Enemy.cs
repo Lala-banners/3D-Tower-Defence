@@ -13,8 +13,6 @@ namespace TowerDefence.Enemies
 {
     public class Enemy : MonoBehaviour
     {
-        Inventory inv;
-
         #region Enemy Path finding
         public int index = 0;
         public GameObject[] enemyPaths;
@@ -84,12 +82,9 @@ namespace TowerDefence.Enemies
             //if (collision.transform.GetComponent<CoreHealth>() != null)
             if (other.transform.tag == "Core")
             {
-                //Die();
                 coreHealth.TakeDamage(10f);
                 print("Enemies are dying!");
                 Die();
-                //Update money
-                //Update core health bar
             }
         }
 
@@ -109,7 +104,6 @@ namespace TowerDefence.Enemies
 
         private void Die()
         {
-            //enemyMan.KillEnemy(this);
             Destroy(this.gameObject);
         }
 

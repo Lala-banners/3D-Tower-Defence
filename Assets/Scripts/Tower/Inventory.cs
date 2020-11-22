@@ -28,10 +28,6 @@ public class Inventory : MonoBehaviour
     //Method for making current turret laser one
     public void UseLaserOne()
     {
-       //TurretTypes types = TurretTypes.laserOne;
-       //How many turrets you have when taken from inventory
-       //currentTurret = types;
-            
         currentTurretObject = turrets[0];
         currentTurret = 0;
 
@@ -40,7 +36,6 @@ public class Inventory : MonoBehaviour
 
         if (money < maxMoney)
         {
-            //moneyText = string("");
             money = maxMoney;
             Debug.Log("No more money");
         }
@@ -80,11 +75,5 @@ public class Inventory : MonoBehaviour
             Debug.Log("No more money");
         }
         moneyText.text = "Money: " + money;
-    }
-
-
-
-    //Spawn turret on map
-    //Check if it the correct turret
-    //Remove turret[1] from totalTurrets[]
+    } 
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TowerDefence.Towers;
-public class LaserOne : TowerCore
+public class LaserOne : TurretHandler
 {
     protected override void RenderAttackVisuals()
     {

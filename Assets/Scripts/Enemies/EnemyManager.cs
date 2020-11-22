@@ -21,8 +21,8 @@ namespace TowerDefence.Managers
         //Function to spawn enemies
         public void SpawnEnemy(Transform _spawner, Transform wayPoint)
         {
-            GameObject newEnemy = Instantiate(enemyPrefab, _spawner.position, enemyPrefab.transform.rotation); // null ref check if null
-            Enemy enemy = newEnemy.GetComponent<Enemy>();
+            GameObject enemyOne = Instantiate(enemyPrefab, _spawner.position, enemyPrefab.transform.rotation); // null ref check if null
+            Enemy enemy = enemyOne.GetComponent<Enemy>();
 
             int count = wayPoint.childCount;
 
@@ -66,12 +66,13 @@ namespace TowerDefence.Managers
             foreach (Enemy enemy in aliveEnemies)
             {
                 //Detects if the enemy is within range, if so, add to the list
-                float distance = Vector3.Distance(enemy.transform.position, _target.position); //------- put breakpoint
+                float distance = Vector3.Distance(enemy.transform.position, _target.position);
                 if (distance < _maxRange && distance > _minRange)
                 {
                     closeEnemies.Add(enemy);
                 }
             }
+            
             //Convert list to array
             return closeEnemies.ToArray();
         }
@@ -89,18 +90,6 @@ namespace TowerDefence.Managers
                 return;
             }
             DontDestroyOnLoad(gameObject);
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }

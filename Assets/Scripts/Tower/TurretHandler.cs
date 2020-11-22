@@ -6,7 +6,7 @@ using TowerDefence.Managers;
 //Towers will have access to TowerDefence.Towers namespace
 namespace TowerDefence.Towers
 {
-    public abstract class TowerCore : MonoBehaviour
+    public abstract class TurretHandler : MonoBehaviour
     {
         #region PROPERTIES
         public string TowerName // The public accessor for the towerName variable.
@@ -22,24 +22,6 @@ namespace TowerDefence.Towers
         public int Cost // The public accessor for the cost variable.
         {
             get => cost;
-        }
-
-        /// <summary>
-        /// Gets formatted string containing all of the description, TowerCore properties,
-        /// name and cost to be displayed on the UI.
-        /// </summary>
-        public string UiDisplayText
-        {
-            get
-            {
-                //{0}, {1}, {2} denotes values from variables
-                //.ToString() is not necessary where they are now - put them within the formats
-                //string.Format = Formats a string based on the first parameter, replacing any {x} with the relevant parameter
-                string display = string.Format("Name: {0} Cost:{1}\n", TowerName, Cost.ToString()); //\n makes a new line, similar to Enter key
-                display += Description + "\n";
-                display += string.Format("Min Range: {0}, Max Range: {1}, Damage: {2}", minimumRange.ToString(), maximumRange.ToString(), damage.ToString());
-                return display;
-            }
         }
 
         /// <summary>
@@ -109,10 +91,9 @@ namespace TowerDefence.Towers
         [Header("Attack Stats")] //Headers are displayed in Inspector as bold headings
         [SerializeField, Min(0.1f)]
         private float damage = 1;
-        [SerializeField, Min(0.1f)]
-        private float minimumRange = 5;
-        [SerializeField]
-        private float maximumRange = 10;
+        [SerializeField, Min(10f)]
+        public float shootRange = 10f;
+        [SerializeField] public float maximumRange = 20f;
         [SerializeField, Min(0.1f)]
         protected float fireRate = 0.1f;
 
@@ -128,7 +109,7 @@ namespace TowerDefence.Towers
         public Transform turret;
         private int level = 1;
         private float xp = 0;
-        //target the TowerCore is attacking
+        //target the TurretHandler is attacking
         [SerializeField] private Enemy target = null;
         /* null (reference to objects) - means nothing.
         * Objects take small amount of memory on a computer and when it's null there is nothing assigned to it (As if it doesn't exist).
@@ -142,18 +123,18 @@ namespace TowerDefence.Towers
         {
             //Mathf = A collection of common math functions
             //Mathf.Clamp = Clamps the given value between the given minimum float and maximum float values. Returns the given value if it is within the min and max range
-            maximumRange = Mathf.Clamp(maximumRange, minimumRange + 1, float.MaxValue);
+            //maximumRange = Mathf.Clamp(maximumRange, shootRange + 1, float.MaxValue);
         }
 
         private void OnDrawGizmosSelected() //OnDrawGizmosSelected draws helpful visuals only when the object is selected. Gizmos are visual debugs we can draw eg sphere, cube, lines, rays, meshes
         {
-            //Draw a mostly transparent red sphere indicating the minmum range
+            //Draw a mostly transparent red sphere indicating the shooting range
             Gizmos.color = new Color(1, 0, 0, 0.25f);
-            Gizmos.DrawSphere(transform.position, minimumRange);
+            Gizmos.DrawWireSphere(transform.position, shootRange);
 
             //Draw a mostly transparent blue sphere indicating the maximum range
             Gizmos.color = new Color(0, 0, 1, 0.25f);
-            Gizmos.DrawSphere(transform.position, MaximumRange);
+            Gizmos.DrawWireSphere(transform.position, MaximumRange);
         }
 
         //_ differentiates between variable and parameters = problems
@@ -180,6 +161,7 @@ namespace TowerDefence.Towers
             if (target != null)
             {
                 turret.LookAt(TargetedEnemy.transform);
+                
             }
             
         }
@@ -202,7 +184,7 @@ namespace TowerDefence.Towers
                 target.Damage(Damage); //Property Damage
 
                 //Update the health bar
-                target.healthBar.value = target.enemyHealth;
+                //target.healthBar.value = target.enemyHealth;
 
                 // Render attack visuals  
                 RenderAttackVisuals();
@@ -232,7 +214,7 @@ namespace TowerDefence.Towers
         private void Target()
         {
             //Get enemy within range
-            Enemy[] closeEnemies = EnemyManager.instance.GetClosestEnemies(transform, MaximumRange, minimumRange);
+            Enemy[] closeEnemies = EnemyManager.instance.GetClosestEnemies(transform, shootRange);
 
             //Call get closest enemy (partitioning)
             target = GetClosestEnemy(closeEnemies);

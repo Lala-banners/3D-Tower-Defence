@@ -38,17 +38,13 @@ namespace TowerDefence.Managers
 
         public void KillEnemy(Enemy _enemy)
         {
-            //Attempt to find the enemy in the list and IndexOf gives 0 if enemy isn't found
-            int enemyIndex = aliveEnemies.IndexOf(_enemy);
-            if (enemyIndex != -1)
+            if(aliveEnemies.Contains(_enemy))
             {
-                //The enemy exists and we can kill it and rmeove from the list
-                Destroy(_enemy.gameObject);
-                aliveEnemies.RemoveAt(enemyIndex);
+                aliveEnemies.Remove(_enemy);
             }
-        }
 
-      
+            Destroy(_enemy.gameObject);
+        }
 
         /// <summary>
         /// Loops through all aliveEnemies in the game and finds the closest enemies within a certain range
@@ -66,11 +62,13 @@ namespace TowerDefence.Managers
             foreach (Enemy enemy in aliveEnemies)
             {
                 //Detects if the enemy is within range, if so, add to the list
-                float distance = Vector3.Distance(enemy.transform.position, _target.position);
+                float distance = Vector3.Distance(enemy.transform.position, _target.position); //------
                 if (distance < _maxRange && distance > _minRange)
                 {
                     closeEnemies.Add(enemy);
+                    
                 }
+                
             }
             
             //Convert list to array

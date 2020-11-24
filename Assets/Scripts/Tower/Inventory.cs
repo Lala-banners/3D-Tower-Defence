@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TowerDefence.Enemies;
 
 public enum TurretTypes
     {
@@ -15,31 +16,36 @@ public class Inventory : MonoBehaviour
 {
     public int[] totalTurrets; //Total amount of turrets [3]
     public GameObject[] turrets; //Physical turrets
-    public int currentTurret = -1; //how many turrets there are in the inventory
+    public int currentTurret = -1; //current turret being used
     public int maxTurretCount = 10; //The maximum amount of turrets that can be used from inventory
-                                    // public int turretCount = 0; //Count that turrets will be subtracted or added to
+                                    
 
     public GameObject currentTurretObject = null;
 
-    public int money = 10; //for setting how much money player receives after killing an enemy
+    public int money = 100; 
     private int maxMoney = 0; //So money doesnt go below 0
     public Text moneyText;
+    public int laserOneCost = 10;
+    public int laserTwoCost = 20;
+    public int laserThreeCost = 30;
 
-    //Method for making current turret laser one
+    private void Update()
+    {
+        moneyText.text = "Money: " + money.ToString();
+    }
+
     public void UseLaserOne()
     {
         currentTurretObject = turrets[0];
         currentTurret = 0;
 
-        //To upgrade turret, costs 5 coins
-        money--;
+        money = money - laserOneCost;
 
-        if (money < maxMoney)
+        if (money < laserOneCost)
         {
             money = maxMoney;
             Debug.Log("No more money");
         }
-        moneyText.text = "Money: " + money;
     }
 
     public void UseLaserTwo()
@@ -47,16 +53,13 @@ public class Inventory : MonoBehaviour
         currentTurretObject = turrets[1];
         currentTurret = 1;
 
-        //To upgrade turret, costs 5 coins
-        money--;
+        money = money - laserTwoCost;
 
-        if (money < maxMoney)
+        if (money < laserTwoCost)
         {
-            //moneyText = string("");
             money = maxMoney;
             Debug.Log("No more money");
         }
-        moneyText.text = "Money: " + money;
     }
 
 
@@ -65,15 +68,12 @@ public class Inventory : MonoBehaviour
         currentTurretObject = turrets[2];
         currentTurret = 2;
 
-        //To upgrade turret, costs 5 coins
-        money--;
+        money = money - laserThreeCost;
 
-        if (money < maxMoney)
+        if (money < laserThreeCost)
         {
-            //moneyText = string("");
             money = maxMoney;
             Debug.Log("No more money");
         }
-        moneyText.text = "Money: " + money;
     } 
 }

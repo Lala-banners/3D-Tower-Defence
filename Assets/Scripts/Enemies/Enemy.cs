@@ -13,6 +13,7 @@ namespace TowerDefence.Enemies
 {
     public class Enemy : MonoBehaviour
     {
+        [SerializeField] Inventory inv;
         #region Enemy Path finding
         public int index = 0;
         public GameObject[] enemyPaths;
@@ -20,11 +21,6 @@ namespace TowerDefence.Enemies
         public EnemyManager enemyMan;
         public CoreHealth coreHealth;
         #endregion
-
-        //[System.Serializable]
-        //public class DeathEvent : UnityEvent<Enemy> { }
-        public float XP { get { return xp; } }//Get xp and return amount (This is a property).
-        public int Money { get { return money; } } //Get money and return amount (This is a property).
 
         [Header("General Enemy Stats")]
         [SerializeField, Tooltip("How fast the enemy will move within the game")]
@@ -34,12 +30,12 @@ namespace TowerDefence.Enemies
         public Slider healthBar;
         [SerializeField, Tooltip("How much damage the enemy can take before dying")]
         public float enemyHealth = 100;
+        public float maxHealth;
 
         [Header("Rewards")]
-        [SerializeField, Tooltip("Amount of experience the killing tower will gain from killing enemy")]
-        private float xp = 1;
         [SerializeField, Tooltip("Amount of money player will gain upon killing the enemy")]
         private int money = 1;
+        public int worth = 15; //worth of enemy
 
 
         private void Start()
@@ -73,9 +69,6 @@ namespace TowerDefence.Enemies
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         }
 
-
-        
-
         //Collide with core to self destruct
         private void OnTriggerEnter(Collider other)
         {
@@ -94,23 +87,39 @@ namespace TowerDefence.Enemies
         public void Damage(float _damage)
         {
             enemyHealth -= _damage;
+
             if (enemyHealth <= 0)
             {
-                enemyHealth = enemyHealth - _damage;
-                healthBar.value = enemyHealth;
                 Die();
             }
+
+            enemyHealth = enemyHealth - _damage;
+            healthBar.value = enemyHealth;
+        }
+
+        public void EnemyHealthBar()
+        {
+            enemyHealth = maxHealth;
+            healthBar.maxValue = maxHealth;
+            healthBar.value = maxHealth;
         }
 
         private void Die()
         {
-            Destroy(this.gameObject);
+            EnemyManager.instance.KillEnemy(this);
         }
 
         // Update is called once per frame
         void Update()
         {
             EnemyFollowPath();
+
+            EnemyHealthBar();
+            if(Input.GetKeyDown(KeyCode.Space)) //FOR TESTING ENEMY HEALTH
+            {
+                Damage(10f);
+                print("Enemies are losing health!");
+            }
         }
     }
 }

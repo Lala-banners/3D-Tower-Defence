@@ -25,25 +25,6 @@ namespace TowerDefence.Towers
         }
 
         /// <summary>
-        /// Calculates the required xp based on the current level
-        /// and the experience scaler.
-        /// </summary>
-        private float RequiredXP
-        {
-            get //can do any kind of logic, similar to function
-            {
-                //if the level is equal to 1, simply return the baseRequiredXp
-                if (level == 1)
-                {
-                    return baseRequiredXp; //experience to get to level 1 regardless
-                }
-                //multiply the level by the experience scaler to get the multiplier
-                // for the baseRequiredXp
-                return baseRequiredXp * (level * experienceScaler);
-            }
-        }
-
-        /// <summary>
         /// The Maximum range the tower can reach based on its level
         /// </summary>
         private float MaximumRange
@@ -97,33 +78,26 @@ namespace TowerDefence.Towers
         [SerializeField, Min(0.1f)]
         protected float fireRate = 0.1f;
 
-        [Header("Experience Stats")]
-        [SerializeField, Range(2, 5)]
-        private int maxLevel = 3;
-        [SerializeField, Min(1)]
-        private float baseRequiredXp = 5;
-        [SerializeField]
-        private float experienceScaler = 1; //multiplied(*) by scaler when player levels up
-
-
         public Transform turret;
         private int level = 1;
         private float xp = 0;
         //target the TurretHandler is attacking
         [SerializeField] private Enemy target = null;
-        /* null (reference to objects) - means nothing.
-        * Objects take small amount of memory on a computer and when it's null there is nothing assigned to it (As if it doesn't exist).
-        * EG commented line of code.
-       */
 
         private float currentTime = 0;
+
+        public GameObject bulletPrefab;
+        public Transform firePoint;
+
         #endregion
+
+
 
         private void OnValidate() //OnValidate runs whenever a variable is changed within the Inspector of this class
         {
             //Mathf = A collection of common math functions
             //Mathf.Clamp = Clamps the given value between the given minimum float and maximum float values. Returns the given value if it is within the min and max range
-            //maximumRange = Mathf.Clamp(maximumRange, shootRange + 1, float.MaxValue);
+            maximumRange = Mathf.Clamp(maximumRange, shootRange + 1, float.MaxValue);
         }
 
         private void OnDrawGizmosSelected() //OnDrawGizmosSelected draws helpful visuals only when the object is selected. Gizmos are visual debugs we can draw eg sphere, cube, lines, rays, meshes
@@ -137,23 +111,7 @@ namespace TowerDefence.Towers
             Gizmos.DrawWireSphere(transform.position, MaximumRange);
         }
 
-        //_ differentiates between variable and parameters = problems
-        public void AddExperience(Enemy _enemy)
-        {
-            xp += _enemy.XP; 
-            //Check that the level is not maxed out and that we have
-            // passed the required experience to level up
-            if (level < maxLevel)
-            {
-                if (xp >= RequiredXP)
-                {
-                    LevelUp();
-                }
-            }
-        }
-
-        protected abstract void RenderAttackVisuals();
-        protected abstract void RenderLevelUpVisuals();
+        //protected abstract void RenderAttackVisuals();
         
         //Function for making the turret aim at enemies
         protected void Aim()
@@ -161,17 +119,7 @@ namespace TowerDefence.Towers
             if (target != null)
             {
                 turret.LookAt(TargetedEnemy.transform);
-                
             }
-            
-        }
-
-        public void LevelUp()
-        {
-            level++; //Add 1 to the level
-            xp = 0;
-
-            RenderLevelUpVisuals();
         }
 
         //Fire() is only handling firing 
@@ -180,14 +128,10 @@ namespace TowerDefence.Towers
             //Make sure there is actually something to target, if there is, damage it
             if (target != null)
             {
-                //(this) object
-                target.Damage(Damage); //Property Damage
+                target.Damage(20f); 
 
-                //Update the health bar
-                //target.healthBar.value = target.enemyHealth;
-
-                // Render attack visuals  
-                RenderAttackVisuals();
+                Instantiate(bulletPrefab, firePoint.position, firePoint.rotation); //spawn bullet at fire point
+                
             }
         }
 
@@ -206,6 +150,7 @@ namespace TowerDefence.Towers
                 {
                     // Reset the current time and fire.
                     currentTime = 0;
+
                     Fire();
                 }
             }
@@ -214,7 +159,7 @@ namespace TowerDefence.Towers
         private void Target()
         {
             //Get enemy within range
-            Enemy[] closeEnemies = EnemyManager.instance.GetClosestEnemies(transform, shootRange);
+            Enemy[] closeEnemies = EnemyManager.instance.GetClosestEnemies(transform, maximumRange); //-------
 
             //Call get closest enemy (partitioning)
             target = GetClosestEnemy(closeEnemies);
@@ -247,7 +192,7 @@ namespace TowerDefence.Towers
         
         protected virtual void Update()
         {
-            Target();
+            Target(); //------
             FireWhenReady();
             Aim();
         }

@@ -20,14 +20,15 @@ public class SpawnTurretOnClick : MonoBehaviour
             //If mouse button left is down
             if (Input.GetMouseButtonDown(0))
             {
-                bool nullStuff = inv.totalTurrets[0] < inv.maxTurretCount && inv.currentTurretObject != null;
+                bool nullStuff = inv.totalTurrets[0] < inv.maxTurretCount && 
+                    inv.currentTurretObject != null;
 
                 if (nullStuff)
                 {
                     //Creates a prefab wherever user clicks
                     Instantiate(inv.currentTurretObject, hit.point, Quaternion.identity);
                     inv.totalTurrets[inv.currentTurret]++;
-                    inv.money--; //take money
+                    inv.money = inv.money - inv.laserOneCost;
                 }
             }
         }

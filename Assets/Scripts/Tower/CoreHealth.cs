@@ -26,14 +26,6 @@ public class CoreHealth : MonoBehaviour
         healthSlider.value = maxHealth;
     }
 
-    //When enemies collide with core
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //  TakeDamage(10f);
-
-    //  TowerDefeated();
-    //}
-
 
     // Update is called once per frame
     void Update()
@@ -64,20 +56,6 @@ public class CoreHealth : MonoBehaviour
         currentHealth = currentHealth - Damage;
         healthSlider.value = currentHealth;
     }
-
-    //public void TowerDefeated()
-    //{
-      //  if(currentHealth == 0)
-        //{
-          //  gameOver.SetActive(true);
-            //Time.timeScale = 0;
-            //print("Tower has been defeated");
-        //}
-        //else
-        //{
-          //  Time.timeScale = 1;
-            //gameOver.SetActive(false);
-        //}
     }
 
 

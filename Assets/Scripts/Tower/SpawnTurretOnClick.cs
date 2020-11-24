@@ -29,6 +29,7 @@ public class SpawnTurretOnClick : MonoBehaviour
                     Instantiate(inv.currentTurretObject, hit.point, Quaternion.identity);
                     inv.totalTurrets[inv.currentTurret]++;
                     inv.money = inv.money - inv.laserOneCost;
+
                 }
             }
         }

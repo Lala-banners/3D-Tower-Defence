@@ -88,10 +88,8 @@ namespace TowerDefence.Towers
 
         public GameObject bulletPrefab;
         public Transform firePoint;
-
+        public float bulletSpeed = 70f;
         #endregion
-
-
 
         private void OnValidate() //OnValidate runs whenever a variable is changed within the Inspector of this class
         {
@@ -110,8 +108,6 @@ namespace TowerDefence.Towers
             Gizmos.color = new Color(0, 0, 1, 0.25f);
             Gizmos.DrawWireSphere(transform.position, MaximumRange);
         }
-
-        //protected abstract void RenderAttackVisuals();
         
         //Function for making the turret aim at enemies
         protected void Aim()
@@ -131,7 +127,9 @@ namespace TowerDefence.Towers
                 target.Damage(20f); 
 
                 Instantiate(bulletPrefab, firePoint.position, firePoint.rotation); //spawn bullet at fire point
-                
+                bulletPrefab.transform.position += firePoint.position * Time.deltaTime * bulletSpeed;
+                //transform.position += transform.forward * Time.deltaTime * bulletSpeed;
+                //Instantiate(bulletPrefab) Vector3.MoveTowards(firePoint.position, TargetedEnemy.transform.position, bulletSpeed);
             }
         }
 
@@ -163,6 +161,8 @@ namespace TowerDefence.Towers
 
             //Call get closest enemy (partitioning)
             target = GetClosestEnemy(closeEnemies);
+
+
         }
 
         // _enemies is array of enemies within range
@@ -189,10 +189,10 @@ namespace TowerDefence.Towers
             return closest;
         }
 
-        
+
         protected virtual void Update()
         {
-            Target(); //------
+            Target(); 
             FireWhenReady();
             Aim();
         }

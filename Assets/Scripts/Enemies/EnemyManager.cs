@@ -11,7 +11,8 @@ namespace TowerDefence.Managers
     {
         //Make a singleton to spawn enemies from everywhere 
         public static EnemyManager instance = null;
-
+        [SerializeField]
+        private Inventory inventory;
         [SerializeField]
         private GameObject enemyPrefab;
 
@@ -32,6 +33,7 @@ namespace TowerDefence.Managers
                 enemyPaths[i] = wayPoint.GetChild(i).gameObject;
             }
             enemy.enemyPaths = enemyPaths;
+            enemy.inv = inventory;
 
             aliveEnemies.Add(enemy);
         }

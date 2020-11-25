@@ -19,34 +19,6 @@ namespace TowerDefence.Towers
             get => description; // The public accessor for the description variable.
         }
 
-        public int Cost // The public accessor for the cost variable.
-        {
-            get => cost;
-        }
-
-        /// <summary>
-        /// The Maximum range the tower can reach based on its level
-        /// </summary>
-        private float MaximumRange
-        {
-            get
-            {
-                //Multiplying is faster than dividing
-                return maximumRange * (level * 0.5f + 0.5f);
-            }
-        }
-
-        /// <summary>
-        /// The amount of damage the tower does, multiplied by its level
-        /// </summary>
-        public float Damage
-        {
-            get
-            {
-                return damage * (level * 0.5f + 0.5f);
-            }
-        }
-
         /// <summary>
         /// The enemy the turret is currently targeting, if no enemy is targeted, this is null.
         /// </summary>
@@ -66,8 +38,8 @@ namespace TowerDefence.Towers
         private string towerName = "";
         [SerializeField, TextArea] //TextArea turns string into box
         private string description = "";
-        [SerializeField, Range(1, 10)]
-        private int cost = 1;
+        [SerializeField, Range(1, 1000)]
+        public int cost = 1;
 
         [Header("Attack Stats")] //Headers are displayed in Inspector as bold headings
         [SerializeField, Min(0.1f)]
@@ -77,10 +49,9 @@ namespace TowerDefence.Towers
         [SerializeField] public float maximumRange = 20f;
         [SerializeField, Min(0.1f)]
         protected float fireRate = 0.1f;
+
         public LayerMask enemyLayer;
         public Transform turret;
-        private int level = 1;
-        private float xp = 0;
         //target the TurretHandler is attacking
         [SerializeField] private Enemy target = null;
 
@@ -106,7 +77,7 @@ namespace TowerDefence.Towers
 
             //Draw a mostly transparent blue sphere indicating the maximum range
             Gizmos.color = new Color(0, 0, 1, 0.25f);
-            Gizmos.DrawWireSphere(transform.position, MaximumRange);
+            Gizmos.DrawWireSphere(transform.position, maximumRange);
         }
 
         //Function for making the turret aim at enemies

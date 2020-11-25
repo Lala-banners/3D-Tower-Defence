@@ -516,7 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: 
   description: 
-  cost: 1
+  cost: 500
   damage: 1
   shootRange: 40
   maximumRange: 41

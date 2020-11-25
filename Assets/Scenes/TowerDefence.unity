@@ -1558,8 +1558,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -320, y: -3}
-  m_SizeDelta: {x: -655.7, y: 141}
+  m_AnchoredPosition: {x: -302.33, y: -3}
+  m_SizeDelta: {x: -601.4, y: 141}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &554816496
 MonoBehaviour:
@@ -1614,6 +1614,10 @@ MonoBehaviour:
   - {fileID: 5249303096814465131, guid: 033a94845ceabbe42a7142af379864ce, type: 3}
   - {fileID: 3326310755533000174, guid: b6121ee4df1e07c4989dc0c6feee737a, type: 3}
   - {fileID: 7255655013258984578, guid: b248f71d1d1d30c438ac325fbdc912e9, type: 3}
+  turretButtons:
+  - {fileID: 1199278130}
+  - {fileID: 1582633758}
+  - {fileID: 570157140}
   currentTurret: -1
   maxTurretCount: 10
   currentTurretObject: {fileID: 0}
@@ -3777,7 +3781,7 @@ MonoBehaviour:
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -4177,6 +4181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95e07ef22dd4654ca914d0729f3f54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 554816499}
   enemyPrefab: {fileID: 4251683512436646319, guid: 2caa347c820878b4f9fd5e46331b516d,
     type: 3}
 --- !u!1 &1828892230 stripped

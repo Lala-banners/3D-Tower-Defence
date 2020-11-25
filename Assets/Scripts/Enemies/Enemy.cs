@@ -13,7 +13,7 @@ namespace TowerDefence.Enemies
 {
     public class Enemy : MonoBehaviour
     {
-        [SerializeField] Inventory inv;
+        [SerializeField]public Inventory inv;
         #region Enemy Path finding
         public int index = 0;
         public GameObject[] enemyPaths;
@@ -34,7 +34,7 @@ namespace TowerDefence.Enemies
 
         [Header("Rewards")]
         [SerializeField, Tooltip("Amount of money player will gain upon killing the enemy")]
-        private int money = 1;
+        //public int money = 100;
         public int worth = 15; //worth of enemy
 
 
@@ -50,6 +50,8 @@ namespace TowerDefence.Enemies
                 Debug.LogError("Could not find coreHealth for enemy");
             }
         }
+
+       
 
         void EnemyFollowPath()
         {
@@ -79,7 +81,6 @@ namespace TowerDefence.Enemies
             if (other.transform.tag == "Core")
             {
                 coreHealth.TakeDamage(10f);
-                print("Enemies are dying!");
                 Die();
             }
         }
@@ -108,12 +109,16 @@ namespace TowerDefence.Enemies
 
         private void Die()
         {
+            print("Enemies are dying!");
+            inv.money += worth;
             EnemyManager.instance.KillEnemy(this);
+            Debug.Log(inv.money.ToString());
         }
 
         // Update is called once per frame
         void Update()
         {
+            
             EnemyFollowPath();
 
             

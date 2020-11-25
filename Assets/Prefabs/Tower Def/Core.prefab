@@ -445,7 +445,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 0}
-  gameOver: {fileID: 0}
+  currentHealth: 100
+  gameOver: {fileID: 4156875257021320875, guid: e1bb118b6f9474147b1765f4895d2963,
+    type: 3}
 --- !u!65 &3618976539374666560
 BoxCollider:
   m_ObjectHideFlags: 0

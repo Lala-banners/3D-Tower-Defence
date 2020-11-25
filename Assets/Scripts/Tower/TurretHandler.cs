@@ -22,7 +22,7 @@ namespace TowerDefence.Towers
         /// <summary>
         /// The enemy the turret is currently targeting, if no enemy is targeted, this is null.
         /// </summary>
-        protected Enemy TargetedEnemy
+        protected EnemyStats TargetedEnemy
         {
             get
             {
@@ -53,7 +53,7 @@ namespace TowerDefence.Towers
         public LayerMask enemyLayer;
         public Transform turret;
         //target the TurretHandler is attacking
-        [SerializeField] private Enemy target = null;
+        [SerializeField] private EnemyStats target = null;
 
         private float currentTime = 0;
 
@@ -101,12 +101,12 @@ namespace TowerDefence.Towers
                 Ray ray = new Ray(originPos, direction);
                 if (Physics.Raycast(ray, out RaycastHit hit, 1000f, enemyLayer))
                 {
-                    Enemy _enemy = hit.transform.GetComponent<Enemy>();
+                    EnemyStats _enemy = hit.transform.GetComponent<EnemyStats>();
                     if (_enemy != null)
                     {
                         target = _enemy;
                         target.Damage(20f);
-                        print("Enemies are losing health!");
+                        //print("Enemies are losing health!");
                     }
                 }
             }
@@ -136,7 +136,7 @@ namespace TowerDefence.Towers
         private void Target()
         {
             //Get enemy within range
-            Enemy[] closeEnemies = EnemyManager.instance.GetClosestEnemies(transform, maximumRange); //-------
+            EnemyStats[] closeEnemies = EnemyManager.Instance.GetClosestEnemies(transform, maximumRange); 
 
             //Call get closest enemy (partitioning)
             target = GetClosestEnemy(closeEnemies);
@@ -144,12 +144,12 @@ namespace TowerDefence.Towers
 
         // _enemies is array of enemies within range
         //loop through every enemy on the list
-        private Enemy GetClosestEnemy(Enemy[] _enemies)
+        private EnemyStats GetClosestEnemy(EnemyStats[] _enemies)
         {
             float closestDist = float.MaxValue;
-            Enemy closest = null;
+            EnemyStats closest = null;
 
-            foreach (Enemy enemy in _enemies)
+            foreach (EnemyStats enemy in _enemies)
             {
                 //Distance between us and the enemy
                 float distToEnemy = Vector3.Distance(enemy.transform.position, transform.position);

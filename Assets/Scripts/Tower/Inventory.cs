@@ -53,7 +53,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    Enemy enemy;
+    EnemyStats enemy;
     public void UseLaserOne()
     {
         currentTurretObject = turrets[0];

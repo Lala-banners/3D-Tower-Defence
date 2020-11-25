@@ -485,6 +485,8 @@ MonoBehaviour:
   enemyMan: {fileID: 0}
   coreHealth: {fileID: 0}
   speed: 20
+  maxEnemy: 100
+  enemyCount: {fileID: 0}
   healthBar: {fileID: 707805898606865201}
   enemyHealth: 100
   maxHealth: 100

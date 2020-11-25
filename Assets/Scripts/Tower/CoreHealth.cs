@@ -30,12 +30,7 @@ public class CoreHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //TakeDamage(10f);
-        }
 
-        //TowerDefeated();
     }
 
     public void TakeDamage(float Damage)

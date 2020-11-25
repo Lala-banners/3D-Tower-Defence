@@ -11,9 +11,8 @@ using UnityEngine.Events; //A zero argument persistent callback that can be save
 //Enemies will have access to TowerDefence enemies namespace
 namespace TowerDefence.Enemies
 {
-    public class Enemy : MonoBehaviour
+    public class EnemyStats : MonoBehaviour
     {
-        [SerializeField]public Inventory inv;
         #region Enemy Path finding
         public int index = 0;
         public GameObject[] enemyPaths;
@@ -25,7 +24,8 @@ namespace TowerDefence.Enemies
         [Header("General Enemy Stats")]
         [SerializeField, Tooltip("How fast the enemy will move within the game")]
         private float speed = 1;
-        
+        public int maxEnemy = 100; //max amount of enemies until player wins
+      
         [Header("Health")]
         public Slider healthBar;
         [SerializeField, Tooltip("How much damage the enemy can take before dying")]
@@ -34,7 +34,6 @@ namespace TowerDefence.Enemies
 
         [Header("Rewards")]
         [SerializeField, Tooltip("Amount of money player will gain upon killing the enemy")]
-        //public int money = 100;
         public int worth = 15; //worth of enemy
 
 
@@ -45,13 +44,11 @@ namespace TowerDefence.Enemies
 
             coreHealth = FindObjectOfType<CoreHealth>();
 
-            if(coreHealth == null)
+            if (coreHealth == null)
             {
                 Debug.LogError("Could not find coreHealth for enemy");
             }
         }
-
-       
 
         void EnemyFollowPath()
         {
@@ -96,8 +93,6 @@ namespace TowerDefence.Enemies
             {
                 Die();
             }
-
-            
         }
 
         public void EnemyHealthBar()
@@ -109,24 +104,21 @@ namespace TowerDefence.Enemies
 
         private void Die()
         {
-            print("Enemies are dying!");
-            inv.money += worth;
-            EnemyManager.instance.KillEnemy(this);
-            Debug.Log(inv.money.ToString());
+            //print("Enemies are dying!");
+            EnemyManager.Instance.KillEnemy(this);
+            //Debug.Log(inv.money.ToString());
         }
 
         // Update is called once per frame
         void Update()
         {
-            
             EnemyFollowPath();
 
-            
-            if(Input.GetKeyDown(KeyCode.Space)) //FOR TESTING ENEMY HEALTH
+            /*if(Input.GetKeyDown(KeyCode.Space)) FOR TESTING ENEMY HEALTH
             {
                 Damage(10f);
                 //print("Enemies are losing health!");
-            }
+            }*/
         }
     }
 }

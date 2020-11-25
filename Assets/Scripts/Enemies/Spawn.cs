@@ -15,7 +15,7 @@ public class Spawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyManager = EnemyManager.instance;
+        enemyManager = EnemyManager.Instance;
     }
 
     // Update is called once per frame

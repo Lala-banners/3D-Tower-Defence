@@ -790,7 +790,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9115879941167972984}
-  - component: {fileID: 1453620211}
+  - component: {fileID: 4975740738115808174}
   m_Layer: 0
   m_Name: Laser 1
   m_TagString: Untagged
@@ -814,7 +814,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1453620211
+--- !u!114 &4975740738115808174
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -823,21 +823,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 5249303096814465131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a309edf48c88bfe4c966113406435623, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d35a7c1327b5504e9acd4be75240af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   towerName: 
   description: 
   cost: 1
-  damage: 1
-  shootRange: 30
-  maximumRange: 31
+  damage: 20
+  shootRange: 10
+  maximumRange: 20
   fireRate: 0.1
-  turret: {fileID: 7549816129731452347}
-  target: {fileID: 4278494798087924116, guid: 2caa347c820878b4f9fd5e46331b516d, type: 3}
-  bulletPrefab: {fileID: 6455042080536085151, guid: 975bdabb6bc164542a374b32825bbaa6,
-    type: 3}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  turret: {fileID: 1899358965289831914}
+  target: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   firePoint: {fileID: 2949163438043502906}
+  bulletSpeed: 70
 --- !u!1 &5492686925891874362
 GameObject:
   m_ObjectHideFlags: 0

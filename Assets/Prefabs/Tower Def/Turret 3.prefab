@@ -593,11 +593,15 @@ MonoBehaviour:
   shootRange: 50
   maximumRange: 51
   fireRate: 0.1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
   turret: {fileID: 4004988908074953816}
   target: {fileID: 0}
   bulletPrefab: {fileID: 6455042080536085151, guid: 975bdabb6bc164542a374b32825bbaa6,
     type: 3}
   firePoint: {fileID: 1288062866575595326}
+  bulletSpeed: 70
 --- !u!1 &8086316950460523138
 GameObject:
   m_ObjectHideFlags: 0

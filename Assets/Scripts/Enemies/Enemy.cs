@@ -40,6 +40,9 @@ namespace TowerDefence.Enemies
 
         private void Start()
         {
+            EnemyHealthBar();
+            healthBar.maxValue = maxHealth;
+
             coreHealth = FindObjectOfType<CoreHealth>();
 
             if(coreHealth == null)
@@ -86,22 +89,21 @@ namespace TowerDefence.Enemies
         /// </summary>
         public void Damage(float _damage)
         {
-            enemyHealth -= _damage;
-
+            enemyHealth = enemyHealth - _damage;
+            EnemyHealthBar();
             if (enemyHealth <= 0)
             {
                 Die();
             }
 
-            enemyHealth = enemyHealth - _damage;
-            healthBar.value = enemyHealth;
+            
         }
 
         public void EnemyHealthBar()
         {
-            enemyHealth = maxHealth;
-            healthBar.maxValue = maxHealth;
-            healthBar.value = maxHealth;
+            healthBar.value = enemyHealth;
+            /*healthBar.maxValue = enemyHealth;
+            healthBar.value = enemyHealth;*/
         }
 
         private void Die()
@@ -114,11 +116,11 @@ namespace TowerDefence.Enemies
         {
             EnemyFollowPath();
 
-            EnemyHealthBar();
+            
             if(Input.GetKeyDown(KeyCode.Space)) //FOR TESTING ENEMY HEALTH
             {
                 Damage(10f);
-                print("Enemies are losing health!");
+                //print("Enemies are losing health!");
             }
         }
     }

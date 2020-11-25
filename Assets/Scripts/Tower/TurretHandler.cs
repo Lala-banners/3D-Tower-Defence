@@ -77,7 +77,7 @@ namespace TowerDefence.Towers
         [SerializeField] public float maximumRange = 20f;
         [SerializeField, Min(0.1f)]
         protected float fireRate = 0.1f;
-
+        public LayerMask enemyLayer;
         public Transform turret;
         private int level = 1;
         private float xp = 0;
@@ -108,7 +108,7 @@ namespace TowerDefence.Towers
             Gizmos.color = new Color(0, 0, 1, 0.25f);
             Gizmos.DrawWireSphere(transform.position, MaximumRange);
         }
-        
+
         //Function for making the turret aim at enemies
         protected void Aim()
         {
@@ -124,12 +124,20 @@ namespace TowerDefence.Towers
             //Make sure there is actually something to target, if there is, damage it
             if (target != null)
             {
-                target.Damage(20f); 
-
-                Instantiate(bulletPrefab, firePoint.position, firePoint.rotation); //spawn bullet at fire point
-                bulletPrefab.transform.position += firePoint.position * Time.deltaTime * bulletSpeed;
-                //transform.position += transform.forward * Time.deltaTime * bulletSpeed;
-                //Instantiate(bulletPrefab) Vector3.MoveTowards(firePoint.position, TargetedEnemy.transform.position, bulletSpeed);
+                Vector3 originPos = firePoint.position;
+                Vector3 targetPos = target.transform.position;
+                Vector3 direction = targetPos - originPos;
+                Ray ray = new Ray(originPos, direction);
+                if (Physics.Raycast(ray, out RaycastHit hit, 1000f, enemyLayer))
+                {
+                    Enemy _enemy = hit.transform.GetComponent<Enemy>();
+                    if (_enemy != null)
+                    {
+                        target = _enemy;
+                        target.Damage(20f);
+                        print("Enemies are losing health!");
+                    }
+                }
             }
         }
 
@@ -161,8 +169,6 @@ namespace TowerDefence.Towers
 
             //Call get closest enemy (partitioning)
             target = GetClosestEnemy(closeEnemies);
-
-
         }
 
         // _enemies is array of enemies within range
@@ -192,7 +198,7 @@ namespace TowerDefence.Towers
 
         protected virtual void Update()
         {
-            Target(); 
+            Target();
             FireWhenReady();
             Aim();
         }

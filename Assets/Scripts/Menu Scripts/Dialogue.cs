@@ -11,6 +11,7 @@ public class Dialogue : MonoBehaviour
     private int textIndex;
     public float typingSpeed;
     public GameObject nextButton;
+    public GameObject mechanics;
 
     // Start is called before the first frame update
     void Start()

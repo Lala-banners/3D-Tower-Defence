@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 5974616521102823057}
   - component: {fileID: 5994233826561772946}
   m_Layer: 0
-  m_Name: Turret 3
+  m_Name: Laser 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -589,7 +589,7 @@ MonoBehaviour:
   towerName: 
   description: 
   cost: 800
-  damage: 1
+  damage: 40
   shootRange: 50
   maximumRange: 51
   fireRate: 0.1

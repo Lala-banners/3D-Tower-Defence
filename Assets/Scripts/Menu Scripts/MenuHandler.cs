@@ -13,6 +13,7 @@ public class MenuHandler : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
+        Win.isGameOver = false;
         Scene activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.buildIndex);
     }
@@ -33,6 +34,10 @@ public class MenuHandler : MonoBehaviour
 
     public void Pause()
     {
+        if(Win.isGameOver)
+        { 
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPaused = !isPaused;

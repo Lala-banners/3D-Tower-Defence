@@ -18,6 +18,10 @@ public class CoreHealth : MonoBehaviour
         HealthBar();
     }
 
+    private void Update()
+    {
+        print(Time.timeScale);
+    }
     public void HealthBar()
     {
         currentHealth = maxHealth;
@@ -31,6 +35,7 @@ public class CoreHealth : MonoBehaviour
         {
             gameOver.SetActive(true);
             Time.timeScale = 0;
+            Win.isGameOver = true;
             //print("Tower has been defeated");
         }
 

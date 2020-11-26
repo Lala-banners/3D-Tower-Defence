@@ -24,7 +24,7 @@ namespace TowerDefence.Enemies
         [Header("General Enemy Stats")]
         [SerializeField, Tooltip("How fast the enemy will move within the game")]
         private float speed = 1;
-        public int maxEnemy = 100; //max amount of enemies until player wins
+        public int maxEnemy = 150; //max amount of enemies until player wins
       
         [Header("Health")]
         public Slider healthBar;
@@ -98,15 +98,12 @@ namespace TowerDefence.Enemies
         public void EnemyHealthBar()
         {
             healthBar.value = enemyHealth;
-            /*healthBar.maxValue = enemyHealth;
-            healthBar.value = enemyHealth;*/
         }
 
         private void Die()
         {
             //print("Enemies are dying!");
             EnemyManager.Instance.KillEnemy(this);
-            //Debug.Log(inv.money.ToString());
         }
 
         // Update is called once per frame

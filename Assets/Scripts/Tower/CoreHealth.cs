@@ -12,7 +12,6 @@ public class CoreHealth : MonoBehaviour
     public GameObject gameOver;
     #endregion
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -26,31 +25,19 @@ public class CoreHealth : MonoBehaviour
         healthSlider.value = maxHealth;
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void TakeDamage(float Damage)
     {
         if (currentHealth == 0)
         {
             gameOver.SetActive(true);
             Time.timeScale = 0;
-            print("Tower has been defeated");
-        }
-        else
-        {
-            Time.timeScale = 1;
-            gameOver.SetActive(false);
+            //print("Tower has been defeated");
         }
 
         //update health bar
         currentHealth = currentHealth - Damage;
         healthSlider.value = currentHealth;
     }
-    }
+}
 
 

@@ -17,7 +17,7 @@ public class Platform : MonoBehaviour
             //Creates a prefab wherever user clicks
             Instantiate(inv.currentTurretObject, towerPos.position, Quaternion.identity);
             inv.totalTurrets[inv.currentTurret]++;
-            inv.money = inv.money - inv.laserOneCost;
+            inv.money.ToString();
         }
     }
 }

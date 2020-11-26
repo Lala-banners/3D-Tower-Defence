@@ -468,7 +468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca4f69f184e6064e99bdfcc4515ecfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inv: {fileID: 0}
   index: 0
   enemyPaths:
   - {fileID: 0}
@@ -484,9 +483,8 @@ MonoBehaviour:
   minDistance: 0.5
   enemyMan: {fileID: 0}
   coreHealth: {fileID: 0}
-  speed: 20
-  maxEnemy: 100
-  enemyCount: {fileID: 0}
+  speed: 10
+  maxEnemy: 150
   healthBar: {fileID: 707805898606865201}
   enemyHealth: 100
   maxHealth: 100

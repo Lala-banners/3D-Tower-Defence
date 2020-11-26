@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TowerDefence.Enemies;
+using TowerDefence.Managers;
 
 public class SpawnTurretOnClick : MonoBehaviour
 {
@@ -28,7 +30,8 @@ public class SpawnTurretOnClick : MonoBehaviour
                     //Creates a prefab wherever user clicks
                     Instantiate(inv.currentTurretObject, hit.point, Quaternion.identity);
                     inv.totalTurrets[inv.currentTurret]++;
-                    inv.money = inv.money - inv.laserOneCost;
+                    inv.money.ToString();
+
                 }
             }
         }

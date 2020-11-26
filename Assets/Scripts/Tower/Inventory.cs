@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour
     public GameObject[] turrets; //Physical turrets
     public Button[] turretButtons;
     public int currentTurret = -1; //current turret being used
-    public int maxTurretCount = 10; //The maximum amount of turrets that can be used from inventory
+    public int maxTurretCount = 100; //The maximum amount of turrets that can be used from inventory
 
 
     public GameObject currentTurretObject = null;
@@ -27,9 +27,9 @@ public class Inventory : MonoBehaviour
     public int money = 100; //starting amount of money
     private int maxMoney = 0; //So money doesnt go below 0
     public Text moneyText;
-    public int laserOneCost = 10;
-    public int laserTwoCost = 20;
-    public int laserThreeCost = 30;
+    private int laserOneCost = 25;
+    private int laserTwoCost = 30;
+    private int laserThreeCost = 60;
     private TurretHandler[] turretHandlers;
 
     private void Start()
@@ -45,6 +45,7 @@ public class Inventory : MonoBehaviour
     private void Update()
     {
         moneyText.text = "Money: " + money.ToString();
+
         for (int i = 0; i < turretButtons.Length; i++)
         {
             Button button = turretButtons[i];
@@ -53,7 +54,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    EnemyStats enemy;
     public void UseLaserOne()
     {
         currentTurretObject = turrets[0];

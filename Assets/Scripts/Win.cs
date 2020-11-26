@@ -10,14 +10,13 @@ public class Win : MonoBehaviour
     [SerializeField] private EnemyStats stats;
     public void WinGame()
     {
-        //If current number of killed enemies is greater or equal to the max (500)
+        //If current number of killed enemies is greater or equal to the max (150)
         if (EnemyManager.Instance.currentGraveyardCapacity >= stats.maxEnemy)
         {
-            //Win the game
+            //You win! Stop the game and win panel appears
             winPanel.SetActive(true);
             Time.timeScale = 0;
-            print("You Won!");
-            enabled = false;
+            //print("You Won!");
         }
     }
 

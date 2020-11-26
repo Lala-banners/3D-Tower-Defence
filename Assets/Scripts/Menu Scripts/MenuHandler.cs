@@ -7,15 +7,16 @@ using System;
 
 public class MenuHandler : MonoBehaviour
 {
-    public GameObject options;
+    public GameObject pause;
 
-
+    //Function that restarts the scene
     public void Restart()
     {
         Time.timeScale = 1;
         Scene activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.buildIndex);
     }
+
     public void ChangeScene(int sceneIndex) //Function to change from Main Menu scene to the game scene
     {
         SceneManager.LoadScene(sceneIndex);
@@ -30,7 +31,7 @@ public class MenuHandler : MonoBehaviour
     }
     bool isPaused = false;
 
-    public void OptionsMenu()
+    public void Pause()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -38,13 +39,13 @@ public class MenuHandler : MonoBehaviour
         }
         if (isPaused)
         {
-            options.SetActive(true);
+            pause.SetActive(true);
             Time.timeScale = 0;
-            //print("Options menu appears");
+            //print("Pause menu appears");
         }
         else
         {
-            options.SetActive(false);
+            pause.SetActive(false);
             Time.timeScale = 1;
         }
     }
@@ -52,6 +53,6 @@ public class MenuHandler : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        OptionsMenu();
+        Pause();
     }
 }

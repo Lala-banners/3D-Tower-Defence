@@ -6,8 +6,8 @@ public class OrbitCam : MonoBehaviour
 {
     public Camera attachedCam;
 
-    public float minYAngle = 30f, maxYAngle = 90f;
-    public float ySpeed = 120f, xSpeed = 120f;
+    private float minYAngle = 30f, maxYAngle = 90f;
+    private float ySpeed = 120f, xSpeed = 120f;
 
     // This function is called every fixed framerate frame, if the MonoBehaviour is enabled
     private void FixedUpdate()
